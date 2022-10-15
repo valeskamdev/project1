@@ -20,30 +20,30 @@ public class PrimeiraClasseJava {
                 String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + quantidade+ " ?");
                 // Pedindo para o usuário inserir informações e então está criando um objeto do tipo `Aluno` e definindo os valores do objeto "aluno1"
                 //entrada de dados
-          /*  String idade = JOptionPane.showInputDialog("Qual a idade?");
-            String dataNascimento = JOptionPane.showInputDialog("Data de nascimento?");
-            String rg = JOptionPane.showInputDialog("Registro Geral?");
-            String cpf = JOptionPane.showInputDialog("Qual é o cpf?");
-            String nomeMae = JOptionPane.showInputDialog("Nome da mãe?");
-            String nomePai = JOptionPane.showInputDialog("Nome do pai?");
-            String nomeEscola = JOptionPane.showInputDialog("Nome da escola?");
-            String serieMatriculado = JOptionPane.showInputDialog("Qual a série?");
-            String dataMatricula = JOptionPane.showInputDialog("Data da matricula?"); */
+              /* String idade = JOptionPane.showInputDialog("Qual a idade?");
+                String dataNascimento = JOptionPane.showInputDialog("Data de nascimento?");
+                String rg = JOptionPane.showInputDialog("Registro Geral?");
+                String cpf = JOptionPane.showInputDialog("Qual é o cpf?");
+                String nomeMae = JOptionPane.showInputDialog("Nome da mãe?");
+                String nomePai = JOptionPane.showInputDialog("Nome do pai?");
+                String nomeEscola = JOptionPane.showInputDialog("Nome da escola?");
+                String serieMatriculado = JOptionPane.showInputDialog("Qual a série?");
+                String dataMatricula = JOptionPane.showInputDialog("Data da matricula?"); */
 
                 //  a variável "aluno1" é uma >>referência<< para o objeto "Aluno"
                 Aluno aluno1 = new Aluno();  // >>intanciando<< o objeto aluno1 (criação de objeto)
 
                 // atribuindo os valores da entrada de dados
                 aluno1.setNome(nome);
-          /*  aluno1.setIdade(Integer.valueOf(idade));
-            aluno1.setDataNasciemnto(dataNascimento);
-            aluno1.setRegistroGeral(rg);
-            aluno1.setNumeroCpf(cpf);
-            aluno1.setNomeMae(nomeMae);
-            aluno1.setNomePai(nomePai);
-            aluno1.setNomeEscola(nomeEscola);
-            aluno1.setSerieMatriculado(serieMatriculado);
-            aluno1.setDataMatricula(dataMatricula); */
+              /*  aluno1.setIdade(Integer.valueOf(idade));
+                aluno1.setDataNasciemnto(dataNascimento);
+                aluno1.setRegistroGeral(rg);
+                aluno1.setNumeroCpf(cpf);
+                aluno1.setNomeMae(nomeMae);
+                aluno1.setNomePai(nomePai);
+                aluno1.setNomeEscola(nomeEscola);
+                aluno1.setSerieMatriculado(serieMatriculado);
+                aluno1.setDataMatricula(dataMatricula); */
 
 
                 // adiconando disciplina na lista
@@ -58,8 +58,8 @@ public class PrimeiraClasseJava {
                     aluno1.getDisciplinas().add(disciplina);   //  adicionando a "disciplina" à lista de "disciplinas" do "aluno1"
                 }
 
-            /* perguntando ao usuário se ele quer remover alguma disciplina
-               se ele quiser, ele vai perguntar qual e depois removê-lo */
+                /* perguntando ao usuário se ele quer remover alguma disciplina
+                   se ele quiser, ele vai perguntar qual e depois removê-lo */
 
                 int escolha = JOptionPane.showConfirmDialog(null, "Deseja remover alguma disciplina?");
                 if (escolha == 0) {  //opção SIM é zero, se o usuário clicar em sim, entra nessa condição
@@ -80,8 +80,8 @@ public class PrimeiraClasseJava {
                 alunos.add(aluno1);  // adicionando o objeto "aluno1" à lista "alunos" até o loop for terminar
             }
 
-        /* estrutura de repetição for each, é um loop para cada aluno
-         dentro da lista e imprimindo as informações para cada um*/
+            /* estrutura de repetição for each, é um loop para cada aluno
+             dentro da lista e imprimindo as informações para cada um*/
 
             for (Aluno aluno : alunos) {  // (objeto -- variável(representando cada aluno da lista) : lista)
 

@@ -145,7 +145,7 @@ public class Aluno {
                 return "Aluno está em recuperação";
             }
         }else {
-            return "Aluno está  reprovado";
+            return "Aluno está reprovado";
         }
     }
 

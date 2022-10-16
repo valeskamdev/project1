@@ -13,7 +13,7 @@ public class PrimeiraClasseJava {
             //
             List<Aluno> alunos = new ArrayList<Aluno>();  //  // instânciando/criando uma lista de objetos Aluno, colocar a classe entre os operdores de maior e menor
 
-            for(int quantidade = 1; quantidade <= 2; quantidade++) {
+            for(int quantidade = 1; quantidade <= 1; quantidade++) {
 
 
                 // Pedindo para o usuário inserir o nome do aluno
@@ -80,34 +80,20 @@ public class PrimeiraClasseJava {
                 alunos.add(aluno1);  // adicionando o objeto "aluno1" à lista "alunos" até o loop for terminar
             }
 
-            /* estrutura de repetição for each, é um loop para cada aluno
-             da lista e imprimindo as informações para cada um*/
+            // percorrendo lista pelas posições e imprimindo as informações dos alunos
 
-            for (Aluno aluno : alunos) {  // (objeto -- variável(representando cada aluno da lista) : lista)
+            for(int posa = 0; posa < alunos.size(); posa++) {  // posa = posição aluno
+                Aluno aluno = alunos.get(posa);
+                System.out.println("Posição: " + posa);
+                System.out.println("Nome: " + aluno.getNome());
+                System.out.println("Média do aluno: " + aluno.getMediaNota());
+                System.out.println("Resultado: " + aluno.getAlunoAprovado());
 
-                // está verificando se o nome do aluno é "Allan",  ignorando se tiverem letras maiúsculas e minúsculas
-                if(aluno.getNome().equalsIgnoreCase("Allan")) {
-                    alunos.remove(aluno); // removendo o aluno que entrou na condição if
-                    break;  // parando execução depois que achar o aluno "Allan"
-                }else {  // imprimindo dados de outros alunos
-                    System.out.println(aluno);  //  imprimindo o método "toString()" da classe "Aluno"
-                    System.out.println("Sua média final foi: " + aluno.getMediaNota());  // imprimindo a média do aluno
-                    System.out.println("Resultado: " + aluno.getAlunoAprovado());  // imprimindo se o aluno foi aprovado, em recuperação ou reprovado
-                    System.out.println("----------------------------------------------------");
+                for(int posd = 0; posd < aluno.getDisciplinas().size(); posd++) {  //  posd = posição disciplina, discip = disciplina
+                    Disciplina discip = aluno.getDisciplinas().get(posd);
+                    System.out.println("Matéria: " + discip.getDisciplina() + " , Nota: " + discip.getNota());
                 }
-            }
-
-            //  imprimindo os alunos restantes e suas disciplinas
-            for(Aluno aluno : alunos) {
-                System.out.println("Alunos que sobraram ns lista: ");
-                System.out.println(aluno.getNome());
-                System.out.println("Suas máterias são: ");
-
-                // loop para cada disciplina na lista de disciplinas do aluno
-                for(Disciplina disciplina : aluno.getDisciplinas()) {
-                    System.out.println(disciplina.getDisciplina());  //  recebendo o nome da disciplina
-
-                }
+                System.out.println("---------------------------------------");
             }
         }
 }

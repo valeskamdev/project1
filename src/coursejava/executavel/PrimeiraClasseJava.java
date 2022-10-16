@@ -81,17 +81,32 @@ public class PrimeiraClasseJava {
             }
 
             /* estrutura de repetição for each, é um loop para cada aluno
-             dentro da lista e imprimindo as informações para cada um*/
+             da lista e imprimindo as informações para cada um*/
 
             for (Aluno aluno : alunos) {  // (objeto -- variável(representando cada aluno da lista) : lista)
 
                 // está verificando se o nome do aluno é "Allan",  ignorando se tiverem letras maiúsculas e minúsculas
                 if(aluno.getNome().equalsIgnoreCase("Allan")) {
+                    alunos.remove(aluno); // removendo o aluno que entrou na condição if
+                    break;  // parando execução depois que achar o aluno "Allan"
+                }else {  // imprimindo dados de outros alunos
                     System.out.println(aluno);  //  imprimindo o método "toString()" da classe "Aluno"
                     System.out.println("Sua média final foi: " + aluno.getMediaNota());  // imprimindo a média do aluno
                     System.out.println("Resultado: " + aluno.getAlunoAprovado());  // imprimindo se o aluno foi aprovado, em recuperação ou reprovado
                     System.out.println("----------------------------------------------------");
-                    break;
+                }
+            }
+
+            //  imprimindo os alunos restantes e suas disciplinas
+            for(Aluno aluno : alunos) {
+                System.out.println("Alunos que sobraram ns lista: ");
+                System.out.println(aluno.getNome());
+                System.out.println("Suas máterias são: ");
+
+                // loop para cada disciplina na lista de disciplinas do aluno
+                for(Disciplina disciplina : aluno.getDisciplinas()) {
+                    System.out.println(disciplina.getDisciplina());  //  recebendo o nome da disciplina
+
                 }
             }
         }

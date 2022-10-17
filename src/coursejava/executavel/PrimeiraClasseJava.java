@@ -10,8 +10,8 @@ import java.util.List;
 public class PrimeiraClasseJava {
         public static void main(String[] args) {  // método auto executávavel
 
-            //
-            List<Aluno> alunos = new ArrayList<Aluno>();  //  // instânciando/criando uma lista de objetos Aluno, colocar a classe entre os operdores de maior e menor
+            // instânciando/criando uma lista de objetos Aluno, colocar a classe entre os operdores de maior e menor
+            List<Aluno> alunos = new ArrayList<Aluno>();
 
             for(int quantidade = 1; quantidade <= 2; quantidade++) {
 

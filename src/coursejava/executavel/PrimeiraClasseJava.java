@@ -13,7 +13,7 @@ public class PrimeiraClasseJava {
             //
             List<Aluno> alunos = new ArrayList<Aluno>();  //  // instânciando/criando uma lista de objetos Aluno, colocar a classe entre os operdores de maior e menor
 
-            for(int quantidade = 1; quantidade <= 1; quantidade++) {
+            for(int quantidade = 1; quantidade <= 2; quantidade++) {
 
 
                 // Pedindo para o usuário inserir o nome do aluno
@@ -47,7 +47,7 @@ public class PrimeiraClasseJava {
 
 
                 // adiconando disciplina na lista
-                for (int pos = 1; pos <= 4; pos++) {  //  loop que será executado 4 vezes.
+                for (int pos = 1; pos <= 1; pos++) {  //  loop que será executado 4 vezes.
 
                     // pedindo ao usuário para inserir o nome da disciplina e nota
                     String nomeDisciplina = JOptionPane.showInputDialog("Nome da disciplina " + pos + " ?");
@@ -82,13 +82,28 @@ public class PrimeiraClasseJava {
 
             // percorrendo lista pelas posições e imprimindo as informações dos alunos
 
-            for(int posa = 0; posa < alunos.size(); posa++) {  // posa = posição aluno
-                Aluno aluno = alunos.get(posa);
-                System.out.println("Posição: " + posa);
+
+            for(int pos = 0; pos < alunos.size(); pos++) {
+                Aluno aluno = alunos.get(pos);
+
+                // substituindo o objeto "aluno" pelo objeto "trocar" (novo aluno) e alterando suas disciplinas.
+                if(aluno.getNome().equalsIgnoreCase("Allan")) {
+                    Aluno trocar = new Aluno();
+                    trocar.setNome("Aluno foi trocado");
+                    Disciplina disciplina = new Disciplina();
+                    disciplina.setDisciplina("Matematica"); // alterando sua disciplina
+                    disciplina.setNota(9);  // alterando sua nota
+                    trocar.getDisciplinas().add(disciplina);  // adicionando as disciplinas do novo aluno à lista "Disciplinas"
+                    alunos.set(pos, trocar);  // para substituir pegamos a posição(indice) e o novo aluno(novo elemento)
+                    aluno = alunos.get(pos);  // pegando a antiga variável "aluno" e substituindo na lista pela posição do aluno novo
+                }
+
+                System.out.println("Posição: " + pos);
                 System.out.println("Nome: " + aluno.getNome());
                 System.out.println("Média do aluno: " + aluno.getMediaNota());
                 System.out.println("Resultado: " + aluno.getAlunoAprovado());
 
+                // imprimindo as disciplinas e notas do aluno
                 for(int posd = 0; posd < aluno.getDisciplinas().size(); posd++) {  //  posd = posição disciplina, discip = disciplina
                     Disciplina discip = aluno.getDisciplinas().get(posd);
                     System.out.println("Matéria: " + discip.getDisciplina() + " , Nota: " + discip.getNota());

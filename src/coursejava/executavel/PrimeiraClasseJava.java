@@ -6,6 +6,7 @@ import coursejava.constantes.StatusAluno;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PrimeiraClasseJava {
@@ -14,16 +15,18 @@ public class PrimeiraClasseJava {
             // instânciando/criando uma lista de objetos Aluno, colocar a classe entre os operdores de maior e menor
             List<Aluno> alunos = new ArrayList<Aluno>();
 
-            List<Aluno> alunosAprovados = new ArrayList<Aluno>();
-            List<Aluno> alunosRecupercao = new ArrayList<Aluno>();
-            List<Aluno> alunosReprovado = new ArrayList<Aluno>();
+            // carregar dados e recuperar atraves de um valor
+            // é uma lista que dentro temos uma chave que identifica uma sequencia de valores
+            // criando um HashMap com uma String como chave e uma Lista de Aluno como valor
+            // Creating a HashMap with a String as a key and a List of Aluno as a value.
+            HashMap<String, List<Aluno>> map = new HashMap<String, List<Aluno>>();
 
             for(int quantidade = 1; quantidade <= 5; quantidade++) {
 
 
                 // Pedindo para o usuário inserir o nome do aluno
                 String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + quantidade+ " ?");
-                // Pedindo para o usuário inserir informações e então está criando um objeto do tipo `Aluno` e definindo os valores do objeto "aluno1"
+                // Pedindo para o usuário inserir informações e então está criando um objeto do tipo "Aluno" e definindo os valores do objeto "aluno1"
                 //entrada de dados
               /* String idade = JOptionPane.showInputDialog("Qual a idade?");
                 String dataNascimento = JOptionPane.showInputDialog("Data de nascimento?");
@@ -85,6 +88,10 @@ public class PrimeiraClasseJava {
                 alunos.add(aluno1);  // adicionando o objeto "aluno1" à lista "alunos" até o loop for terminar
             }
 
+            // criando uma nova lista de alunos para cada status, com chaves e valores
+            map.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
+            map.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
+            map.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
 
             for(Aluno aluno : alunos) {
 
@@ -92,32 +99,33 @@ public class PrimeiraClasseJava {
 
                 // verificando se o aluno está aprovado, se for, está adicionando o aluno na lista de aprovados
                 if(aluno.getAlunoAprovado().equalsIgnoreCase(StatusAluno.APROVADO)) {
-                    alunosAprovados.add(aluno);
+                    map.get(StatusAluno.APROVADO).add(aluno);  // retornando apenas a chave
                 // verificando se o aluno está em recuperação e se estiver, está adicionando o aluno à lista de recuperação
                 }else if (aluno.getAlunoAprovado().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
-                    alunosRecupercao.add(aluno);
+                    map.get(StatusAluno.RECUPERACAO).add(aluno);  // retornando apenas a chave
                 // Adicionando o aluno à lista de reprovados
                 }else {
-                    alunosReprovado.add(aluno);
+                    map.get(StatusAluno.REPROVADO).add(aluno);  // retornando apenas a chave
                 }
             }
 
-            // imprimindo a lista de alunos, separados pelo status do aluno
+            //  loop for que está iterando sobre a lista de alunos de acordo com seu status
 
+            // imprimindo a lista de alunos, separados pelo status do aluno
             System.out.println("-------Lista dos aprovados-------");
-            for(Aluno aluno : alunosAprovados) {
+            for(Aluno aluno : map.get(StatusAluno.APROVADO)) { // retornando apenas a chave
                 System.out.println("Nome: " + aluno.getNome() + ", Resultado: " + aluno.getAlunoAprovado() + ", Média: " + aluno.getMediaNota());
             }
 
             System.out.println("\n");
             System.out.println("-------Lista em recuperação-------");
-            for(Aluno aluno : alunosRecupercao) {
+            for(Aluno aluno : map.get(StatusAluno.RECUPERACAO)) {  // retornando apenas a chave
                 System.out.println("Nome: " + aluno.getNome() + ", Resultado: " + aluno.getAlunoAprovado() + ", Média: " + aluno.getMediaNota());
             }
 
             System.out.println("\n");
-            System.out.println("-------Lista dos reprovado-------");
-            for(Aluno aluno :alunosReprovado) {
+            System.out.println("-------Lista dos reprovados-------");
+            for(Aluno aluno : map.get(StatusAluno.REPROVADO)) {  // retornando apenas a chave
                 System.out.println("Nome: " + aluno.getNome() + ", Resultado: " + aluno.getAlunoAprovado() + ", Média: " + aluno.getMediaNota());
             }
         }

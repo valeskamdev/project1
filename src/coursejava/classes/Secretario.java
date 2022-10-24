@@ -2,6 +2,7 @@ package coursejava.classes;
 
 
 // SUBCLASSE (filha)
+// criando uma classe chamada "Secretario" que herda da classe "Pessoa"
 public class Secretario extends Pessoa {
 
     // atributos específico da classe Diretor
@@ -9,7 +10,7 @@ public class Secretario extends Pessoa {
     private String nivelCargo;
     private String experiencia;
 
-    //
+    // fazendo referências aos atributos
     public String getRegistro() {
         return registro;
     }

@@ -1,6 +1,7 @@
 package coursejava.classes;
 
 // SUBCLASSE (filha)
+// criando uma classe chamada "Diretor" que herda da classe "Pessoa"
 public class Diretor extends Pessoa {
 
     private String registroEducacao;

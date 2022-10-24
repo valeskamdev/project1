@@ -14,6 +14,7 @@ import java.util.Objects;
  */
 
 // SUBCLASSE (filha)
+// criando uma classe chamada "Aluno" que herda da classe "Pessoa"
 public class Aluno extends Pessoa {
 
     private String dataMatricula;
@@ -179,6 +180,26 @@ public class Aluno extends Pessoa {
     @Override
     public int hashCode() {
         return Objects.hash(getNome(), getNumeroCpf());
+    }
+
+    /*
+    @override = indentifica método sobrescrito da superclasse (annotation), usado
+    para informar ao compilador que o método está substituindo um método na superclasse
+     */
+
+    // retorna true se a pessoa tiver 15 anos ou mais, false caso contrário.
+
+    @Override
+    public boolean pessoaMaiorIdade() {
+        return super.pessoaMaiorIdade();
+        /*
+        poderiamos colocar:  return idade >= 15;
+        nesse caso não teria @override, porque NÃO estaria subescrito
+         */
+    }
+
+    public String msgMaiorIdade() {
+        return this.pessoaMaiorIdade() ? "Aluno maior de idade!" : "Aluno menor de idade!";
     }
 }
 

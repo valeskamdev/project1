@@ -6,39 +6,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-//está é nossa classe que representa o Aluno
-public class Aluno {
-    // por padrão Java, os atributos estão no tipo "private"
-    // modificador de acesso "private" só é acessível dentro do próprio projeto
-    //modificador de acesso "public" pode ser acessível a outras classes
-    // esses são os >>atributos<< do "Aluno"
-    private String nome;
-    private int idade;
-    private String dataNasciemnto;
-    private String registroGeral;
-    private String numeroCpf;
-    private String nomeMae;
-    private String nomePai;
+
+/*
+    Herança (extends), criar classes que herdam atributos e métodos de outras classes
+    evitando rescrita de código chamado HERANÇA. Para representarmos esse tipo na linguagem
+    ultilizamos a palavra reservada >>extends<<
+ */
+
+// SUBCLASSE (filha)
+public class Aluno extends Pessoa {
+
     private String dataMatricula;
     private String nomeEscola;
     private String serieMatriculado;
 
     // criando uma nova lista de objetos Disciplina, a classe Aluno tem uma lista de disciplinas
-    private List<Disciplina> disciplinas = new ArrayList<Disciplina>();  // instânciando o objeto Disciplina (lista), colocar a classe entre os operdores de maior e menor
+    // instânciando o objeto Disciplina (lista), colocar a classe entre os operdores de maior e menor
+    private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
 
-    // métodos SETTERS e GETTERS do objeto
+    /*
+        Métodos SETTERS e GETTERS do objeto (modificadores de acesso)
 
-    // acessa atributos, métodos e contrutures do objeto
-    // SET = recebe/define/altera valores
-    // GET = retorna valores
-    // dentro da main não pode se usar "this"
-    // "this." é usado para referenciar a um atributo/ fazer chamada a um método ou alguma variável dentro do próprio objeto
+     acessa atributos, métodos e contrutures do objeto. Servem para pegarmos
+     informações de variáveis da classe definidas como >>private<<
 
-    // "nome" se refere ao parâmetro e "this.nome" se refere ao atributo
+     SET = recebe/define/altera valores
+     GET = retorna valores
+
+     */
+
     // fazendo referências aos atributos
     public void setNome(String nome) {
-        this.nome = nome;
+        super.nome = nome;
     }
 
     public String getNome() {
@@ -50,7 +50,7 @@ public class Aluno {
     }
 
     public void setIdade(int idade) {
-        this.idade = idade;
+        super.idade = idade;
     }
 
     public String getDataNasciemnto() {
@@ -58,7 +58,7 @@ public class Aluno {
     }
 
     public void setDataNasciemnto(String dataNasciemnto) {
-        this.dataNasciemnto = dataNasciemnto;
+        super.dataNasciemnto = dataNasciemnto;
     }
 
     public String getRegistroGeral() {
@@ -66,7 +66,7 @@ public class Aluno {
     }
 
     public void setRegistroGeral(String registroGeral) {
-        this.registroGeral = registroGeral;
+        super.registroGeral = registroGeral;
     }
 
     public String getNumeroCpf() {
@@ -74,7 +74,7 @@ public class Aluno {
     }
 
     public void setNumeroCpf(String numeroCpf) {
-        this.numeroCpf = numeroCpf;
+        super.numeroCpf = numeroCpf;
     }
 
     public String getNomeMae() {
@@ -82,7 +82,7 @@ public class Aluno {
     }
 
     public void setNomeMae(String nomeMae) {
-        this.nomeMae = nomeMae;
+        super.nomeMae = nomeMae;
     }
 
     public String getNomePai() {
@@ -90,7 +90,7 @@ public class Aluno {
     }
 
     public void setNomePai(String nomePai) {
-        this.nomePai = nomePai;
+        super.nomePai = nomePai;
     }
 
     public String getDataMatricula() {
@@ -151,8 +151,8 @@ public class Aluno {
         }
     }
 
-    @Override
     //  método que retorna uma representação de string do objeto
+    @Override
     public String toString() {
         return "Aluno{" +
                 "nome='" + nome + '\'' +
@@ -168,7 +168,7 @@ public class Aluno {
                 '}';
     }
 
-    // para diferenciar objetos na memória (nesse caso o nome e cpf)
+    // para diferenciar objetos na memória (nesse caso nome e cpf)
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

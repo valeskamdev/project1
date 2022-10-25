@@ -127,6 +127,11 @@ public class Aluno extends Pessoa {
         return disciplinas;
     }
 
+    @Override
+    public double salario() {
+        return 1500.90;
+    }
+
     // método que retorna a média das quatro notas do aluno que está na lista de objetos Disciplinas
     public double getMediaNota() {
 

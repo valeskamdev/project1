@@ -2,8 +2,8 @@ package coursejava.classes;
 
 // SUPERCLASSE / CLASSE MÃE
 /*
-   abstract = para impedir que a superclasse possa ser instanciada,
-   apenas herdada, serve apenas como um "modelo" nã podendo trabalhar
+   abstract = impede que a superclasse possa ser instanciada,
+   apenas herdada, serve apenas como um "modelo" não podendo trabalhar
    com a classe abstrata (abstração)
  */
 public abstract class Pessoa {
@@ -95,6 +95,7 @@ public abstract class Pessoa {
         this.nomePai = nomePai;
     }
 
+    // não obriga as filhas a terem esse método, pois não é asbtract
     public boolean pessoaMaiorIdade() {
         return idade >= 18;
     }

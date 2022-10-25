@@ -8,7 +8,7 @@ import java.util.Objects;
 
 
 /*
-    Herança (extends), criar classes que herdam atributos e métodos de outras classes
+    Herança (extends), cria classes que herdam atributos e métodos de outras classes
     evitando rescrita de código chamado HERANÇA. Para representarmos esse tipo na linguagem
     ultilizamos a palavra reservada >>extends<<
  */
@@ -127,6 +127,7 @@ public class Aluno extends Pessoa {
         return disciplinas;
     }
 
+    // salário do aluno
     @Override
     public double salario() {
         return 1500.90;
@@ -188,12 +189,11 @@ public class Aluno extends Pessoa {
     }
 
     /*
-    @override = indentifica método sobrescrito da superclasse (annotation), usado
+    @override (annotation) = indentifica método sobrescrito da superclasse, usado
     para informar ao compilador que o método está substituindo um método na superclasse
      */
 
     // retorna true se a pessoa tiver 15 anos ou mais, false caso contrário.
-
     @Override
     public boolean pessoaMaiorIdade() {
         return super.pessoaMaiorIdade();

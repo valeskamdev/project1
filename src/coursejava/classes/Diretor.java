@@ -49,6 +49,7 @@ public class Diretor extends Pessoa {
                 '}';
     }
 
+    // salário do diretor
     @Override
     public double salario() {
         return 3900.78;

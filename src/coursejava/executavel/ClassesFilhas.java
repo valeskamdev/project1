@@ -2,6 +2,7 @@ package coursejava.executavel;
 
 import coursejava.classes.Aluno;
 import coursejava.classes.Diretor;
+import coursejava.classes.Pessoa;
 import coursejava.classes.Secretario;
 
 public class ClassesFilhas {
@@ -19,7 +20,7 @@ public class ClassesFilhas {
 
         Secretario secretario = new Secretario();
         secretario.setExperiencia("Administração");
-        secretario.setNumeroCpf("9876543211");
+        secretario.setNome("Nicolas");
         secretario.setIdade(18);
 
         System.out.println(aluno);
@@ -33,5 +34,19 @@ public class ClassesFilhas {
         System.out.println("Salário do aluno: " + aluno.salario());
         System.out.println("Salário do diretor: " + diretor.salario());
         System.out.println("Salário do secretário: " + secretario.salario());
+
+       teste(aluno);
+       teste(diretor);
+       teste(secretario);
+
+
+       // Pessoa p1 = new Diretor(); ==== TEM POLIMORFISMO
+       // Diretor d1 = new Diretor(); ====  NÃO TEM POLIMORFISMO
+
+    }
+
+
+    public static void teste(Pessoa pessoa) {
+        System.out.println("Essa pessoa chamado(a) " + pessoa.getNome() + " recebe salário de " + pessoa.salario());
     }
 }

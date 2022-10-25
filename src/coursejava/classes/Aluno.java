@@ -194,7 +194,7 @@ public class Aluno extends Pessoa {
         return super.pessoaMaiorIdade();
         /*
         poderiamos colocar:  return idade >= 15;
-        nesse caso não teria @override, porque NÃO estaria subescrito
+        nesse caso não teria @override, porque NÃO estaria sobrescrevendo
          */
     }
 

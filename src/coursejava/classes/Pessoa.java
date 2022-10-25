@@ -1,7 +1,11 @@
 package coursejava.classes;
 
 // SUPERCLASSE / CLASSE MÃE
-public class Pessoa {
+/* abstract = para impedir que a superclasse possa ser instanciada,
+   apenas herdada, serve apenas como um "modelo" nã podendo trabalhar
+   com a classe abstrata (abstração)
+ */
+public abstract class Pessoa {
 
      /*
         MODIFICADORES:

@@ -193,7 +193,7 @@ public class Aluno extends Pessoa {
     para informar ao compilador que o método está substituindo um método na superclasse
      */
 
-    // retorna true se a pessoa tiver 15 anos ou mais, false caso contrário.
+    // retorna true se a pessoa tiver 15 anos ou mais, false caso contrário
     @Override
     public boolean pessoaMaiorIdade() {
         return super.pessoaMaiorIdade();

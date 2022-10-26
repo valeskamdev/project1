@@ -1,14 +1,22 @@
 package coursejava.classes;
 
 
-// SUBCLASSE (filha)
-// criando uma classe chamada "Secretario" que herda da classe "Pessoa"
-public class Secretario extends Pessoa {
+import coursejava.interfaces.PermitirAcesso;
 
-    // atributos específico da classe Diretor
+// SUBCLASSE (filha)
+/*
+   criando uma classe chamada "Secretário" que herda da classe "Pessoa"
+   e implementa a interface "PermitirAcesso"
+ */
+public class Secretario extends Pessoa implements PermitirAcesso {
+
+    // atributos específico da classe Secretario
     private String registro;
     private String nivelCargo;
     private String experiencia;
+    // login e senha para ter acesso a interface
+    private String login;
+    private String senha;
 
     // fazendo referências aos atributos
     public String getRegistro() {
@@ -35,6 +43,22 @@ public class Secretario extends Pessoa {
         this.experiencia = experiencia;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     //  método que retorna uma representação de string do objeto
     @Override
     public String toString() {
@@ -56,5 +80,12 @@ public class Secretario extends Pessoa {
     @Override
     public double salario() {
         return 1800.80 * 0.9;
+    }
+
+    // método do contrato de autenticação
+    // método que retorna um valor booleano, verificando se o login e a senha são iguais a "admin"
+    @Override
+    public boolean autenticar() {
+        return login.equals("admin") && senha.equals("admin");
     }
 }

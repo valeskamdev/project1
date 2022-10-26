@@ -2,6 +2,7 @@ package coursejava.executavel;
 
 import coursejava.classes.Aluno;
 import coursejava.classes.Disciplina;
+import coursejava.classes.Secretario;
 import coursejava.constantes.StatusAluno;
 
 import javax.swing.*;
@@ -12,30 +13,30 @@ import java.util.List;
 public class PrimeiraClasseJava {
         public static void main(String[] args) {  // método auto executávavel
 
-
             // simples validação de permissão de acesso
             String login = JOptionPane.showInputDialog("Informe o login");
             String senha = JOptionPane.showInputDialog("Informe a senha");
 
-            if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+            Secretario secretario = new Secretario(); // trabalhando diretamente com objeto
+            // configurando o login e a senha para o usuário
+            secretario.setLogin(login);
+            secretario.setSenha(senha);
 
-                // instânciando/criando uma lista de objetos Aluno, colocar a classe entre os operdores de maior e menor
+            // verificando se o usuário está autenticado
+            if (secretario.autenticar()) {
+
+                // instânciando uma lista de objetos Aluno (colocar a classe entre os operdores de maior e menor)
                 List<Aluno> alunos = new ArrayList<Aluno>();
 
-                // carregar dados e recuperar atraves de um valor
-                // é uma lista que dentro temos uma chave que identifica uma sequencia de valores
-                // criando um HashMap com uma String como chave e uma Lista de Aluno como valor
-                // Creating a HashMap with a String as a key and a List of Aluno as a value.
+                // criando um novo HashMap com uma String como chave e uma Lista de Aluno como valor
                 HashMap<String, List<Aluno>> map = new HashMap<String, List<Aluno>>();
 
+                // loop que será executado 5 vezes, representando quantidade de alunos
                 for (int quantidade = 1; quantidade <= 5; quantidade++) {
 
-
-                    // Pedindo para o usuário inserir o nome do aluno
-                    String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + quantidade + " ?");
-                    // Pedindo para o usuário inserir informações e então está criando um objeto do tipo "Aluno" e definindo os valores do objeto "aluno1"
-                    //entrada de dados
-              /* String idade = JOptionPane.showInputDialog("Qual a idade?");
+                // solicitando ao usuário para que insira as informações
+                String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + quantidade + " ?");
+                String idade = JOptionPane.showInputDialog("Qual a idade?");
                 String dataNascimento = JOptionPane.showInputDialog("Data de nascimento?");
                 String rg = JOptionPane.showInputDialog("Registro Geral?");
                 String cpf = JOptionPane.showInputDialog("Qual é o cpf?");
@@ -43,14 +44,15 @@ public class PrimeiraClasseJava {
                 String nomePai = JOptionPane.showInputDialog("Nome do pai?");
                 String nomeEscola = JOptionPane.showInputDialog("Nome da escola?");
                 String serieMatriculado = JOptionPane.showInputDialog("Qual a série?");
-                String dataMatricula = JOptionPane.showInputDialog("Data da matricula?"); */
+                String dataMatricula = JOptionPane.showInputDialog("Data da matricula?");
 
-                    //  a variável "aluno1" é uma >>referência<< para o objeto "Aluno"
-                    Aluno aluno1 = new Aluno();  // >>intanciando<< o objeto aluno1 (criação de objeto)
 
-                    // atribuindo os valores da entrada de dados
-                    aluno1.setNome(nome);
-              /*  aluno1.setIdade(Integer.valueOf(idade));
+                // criando um novo objeto da classe "Aluno" e atribuindo-o à variável "aluno1"'
+                Aluno aluno1 = new Aluno();
+
+                // atribuindo os valores da entrada de dados
+                aluno1.setNome(nome);
+                aluno1.setIdade(Integer.valueOf(idade));
                 aluno1.setDataNasciemnto(dataNascimento);
                 aluno1.setRegistroGeral(rg);
                 aluno1.setNumeroCpf(cpf);
@@ -58,23 +60,24 @@ public class PrimeiraClasseJava {
                 aluno1.setNomePai(nomePai);
                 aluno1.setNomeEscola(nomeEscola);
                 aluno1.setSerieMatriculado(serieMatriculado);
-                aluno1.setDataMatricula(dataMatricula); */
+                aluno1.setDataMatricula(dataMatricula);
 
+                  // adiconando disciplina na lista
+                  for (int pos = 1; pos <= 1; pos++) {  //  loop que será executado 4 vezes
 
-                    // adiconando disciplina na lista
-                    for (int pos = 1; pos <= 1; pos++) {  //  loop que será executado 4 vezes.
-
-                        // pedindo ao usuário para inserir o nome da disciplina e nota
-                        String nomeDisciplina = JOptionPane.showInputDialog("Nome da disciplina " + pos + " ?");
-                        String notaDisciplina = JOptionPane.showInputDialog("Nota da disciplina " + pos + " ?");
-                        Disciplina disciplina = new Disciplina();    // novo objeto da classe "Disciplina", atribuindo a variável "disciplina" (dando referência)
-                        disciplina.setDisciplina(nomeDisciplina);    // definindo o nome da disciplina.
-                        disciplina.setNota(Double.valueOf(notaDisciplina));    // convertendo double para string
-                        aluno1.getDisciplinas().add(disciplina);   //  adicionando a "disciplina" à lista de "disciplinas" do "aluno1"
+                     // pedindo ao usuário para inserir o nome da disciplina e nota
+                     String nomeDisciplina = JOptionPane.showInputDialog("Nome da disciplina " + pos + " ?");
+                     String notaDisciplina = JOptionPane.showInputDialog("Nota da disciplina " + pos + " ?");
+                     Disciplina disciplina = new Disciplina();    // novo objeto da classe "Disciplina"
+                     disciplina.setDisciplina(nomeDisciplina);    // definindo o nome da disciplina
+                     disciplina.setNota(Double.parseDouble(notaDisciplina));    // convertendo "String" para um "Double"
+                     aluno1.getDisciplinas().add(disciplina);   //  adicionando a "disciplina" à lista de "disciplinas" do "aluno1"
                     }
 
-                /* perguntando ao usuário se ele quer remover alguma disciplina
-                   se ele quiser, ele vai perguntar qual e depois removê-lo */
+                  /*
+                    perguntando ao usuário se ele quer remover alguma disciplina
+                    se ele quiser, ele vai perguntar qual e depois removê-lo
+                  */
 
                     int escolha = JOptionPane.showConfirmDialog(null, "Deseja remover alguma disciplina?");
                     if (escolha == 0) {  //opção SIM é zero, se o usuário clicar em sim, entra nessa condição
@@ -89,7 +92,7 @@ public class PrimeiraClasseJava {
                      e então "intValue()" está convertendo o "Integer" para um "int", para usar o ".remove(int)" */
                             aluno1.getDisciplinas().remove(Integer.valueOf(disciplinaRemover).intValue() - posicao);
                             posicao++;
-                            continuarRemover = JOptionPane.showConfirmDialog(null, "Continuar a remover?");  // perguntar ao usuário se ele quer continuar removendo, se sim, a repetição while continuará
+                            continuarRemover = JOptionPane.showConfirmDialog(null, "Continuar a remover?");  // pergunta ao usuário se ele quer continuar removendo, se sim, a repetição while continuará
                         }
                     }
                     alunos.add(aluno1);  // adicionando o objeto "aluno1" à lista "alunos" até o loop for terminar
@@ -100,6 +103,7 @@ public class PrimeiraClasseJava {
                 map.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
                 map.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
 
+                // iterando sobre a lista de alunos
                 for (Aluno aluno : alunos) {
 
                     //alunos separados em listas
@@ -107,9 +111,11 @@ public class PrimeiraClasseJava {
                     // verificando se o aluno está aprovado, se for, está adicionando o aluno na lista de aprovados
                     if (aluno.getAlunoAprovado().equalsIgnoreCase(StatusAluno.APROVADO)) {
                         map.get(StatusAluno.APROVADO).add(aluno);  // retornando apenas a chave
+
                         // verificando se o aluno está em recuperação e se estiver, está adicionando o aluno à lista de recuperação
                     } else if (aluno.getAlunoAprovado().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
                         map.get(StatusAluno.RECUPERACAO).add(aluno);  // retornando apenas a chave
+
                         // Adicionando o aluno à lista de reprovados
                     } else {
                         map.get(StatusAluno.REPROVADO).add(aluno);  // retornando apenas a chave
@@ -117,8 +123,6 @@ public class PrimeiraClasseJava {
                 }
 
                 //  loop for que está iterando sobre a lista de alunos de acordo com seu status
-
-                // imprimindo a lista de alunos, separados pelo status do aluno
                 System.out.println("-------Lista dos aprovados-------");
                 for (Aluno aluno : map.get(StatusAluno.APROVADO)) { // retornando apenas a chave
                     System.out.println("Nome: " + aluno.getNome() + ", Resultado: " + aluno.getAlunoAprovado() + ", Média: " + aluno.getMediaNota());
@@ -135,6 +139,9 @@ public class PrimeiraClasseJava {
                 for (Aluno aluno : map.get(StatusAluno.REPROVADO)) {  // retornando apenas a chave
                     System.out.println("Nome: " + aluno.getNome() + ", Resultado: " + aluno.getAlunoAprovado() + ", Média: " + aluno.getMediaNota());
                 }
+            // mensagem se o usuário não estiver autenticado
+            }else {
+                JOptionPane.showMessageDialog(null, "Acesso não permitido!");
             }
         }
 }

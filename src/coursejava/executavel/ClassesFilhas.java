@@ -40,12 +40,13 @@ public class ClassesFilhas {
        teste(secretario);
 
 
-       // Pessoa p1 = new Diretor(); ==== TEM POLIMORFISMO
-       // Diretor d1 = new Diretor(); ====  NÃO TEM POLIMORFISMO
+       // Pessoa p1 = new Diretor(); ==== POLIMORFISMO
+       // Diretor d1 = new Diretor(); ====  SEM POLIMORFISMO
 
     }
 
 
+    //
     public static void teste(Pessoa pessoa) {
         System.out.println("Essa pessoa chamado(a) " + pessoa.getNome() + " recebe salário de " + pessoa.salario());
     }

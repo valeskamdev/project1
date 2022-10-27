@@ -4,10 +4,10 @@ package coursejava.interfaces;
 public interface PermitirAcesso {
 
     /*
-     declarção de método, este método retorna um valor
-     booleano que indica se o usuário está autenticado ou não
+      declarção de método, retornando um valor booleano que indica se
+      o usuário está autenticado ou não, parametro com login e senha
      */
-    public boolean autenticar();
+    public boolean autenticar(String login, String senha);
 
 
 }

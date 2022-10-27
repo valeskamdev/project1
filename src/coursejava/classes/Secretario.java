@@ -3,7 +3,7 @@ package coursejava.classes;
 
 import coursejava.interfaces.PermitirAcesso;
 
-// SUBCLASSE (filha)
+// SUBCLASSE
 /*
    criando uma classe chamada "Secretário" que herda da classe "Pessoa"
    e implementa a interface "PermitirAcesso"
@@ -14,9 +14,6 @@ public class Secretario extends Pessoa implements PermitirAcesso {
     private String registro;
     private String nivelCargo;
     private String experiencia;
-    // login e senha para ter acesso a interface
-    private String login;
-    private String senha;
 
     // fazendo referências aos atributos
     public String getRegistro() {
@@ -41,22 +38,6 @@ public class Secretario extends Pessoa implements PermitirAcesso {
 
     public void setExperiencia(String experiencia) {
         this.experiencia = experiencia;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     //  método que retorna uma representação de string do objeto
@@ -85,7 +66,7 @@ public class Secretario extends Pessoa implements PermitirAcesso {
     // método do contrato de autenticação
     // método que retorna um valor booleano, verificando se o login e a senha são iguais a "admin"
     @Override
-    public boolean autenticar() {
+    public boolean autenticar(String login, String senha) {
         return login.equals("admin") && senha.equals("admin");
     }
 }

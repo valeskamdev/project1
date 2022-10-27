@@ -18,8 +18,11 @@ public class PrimeiraClasseJava {
             String login = JOptionPane.showInputDialog("Informe o login");
             String senha = JOptionPane.showInputDialog("Informe a senha");
 
-            // chamando o método "autenticar" da classe "Secretário" e passando os parâmetros "login" e "senha"
-            if (new Secretario().autenticar(login, senha)) {
+            // criando objeto da classe "Secretário" e atribuindo-o à variável "permitirAcesso"
+            PermitirAcesso permitirAcesso = new Secretario(login, senha);
+
+            // chamando o método "autenticar()" da interface "PermitirAcesso"
+            if (permitirAcesso.autenticar()) {
 
                 // instânciando uma lista de objetos Aluno (colocar a classe entre os operdores de maior e menor)
                 List<Aluno> alunos = new ArrayList<Aluno>();

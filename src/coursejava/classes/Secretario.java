@@ -14,6 +14,19 @@ public class Secretario extends Pessoa implements PermitirAcesso {
     private String registro;
     private String nivelCargo;
     private String experiencia;
+    private String login;
+    private String senha;
+
+
+
+    public Secretario(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
+    }
+
+    public Secretario() {
+    }
+
 
     // fazendo referências aos atributos
     public String getRegistro() {
@@ -63,10 +76,17 @@ public class Secretario extends Pessoa implements PermitirAcesso {
         return 1800.80 * 0.9;
     }
 
-    // método do contrato de autenticação
-    // método que retorna um valor booleano, verificando se o login e a senha são iguais a "admin"
+    // método que recebe dois parâmetros e retorna um valor booleano
     @Override
     public boolean autenticar(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
+        return autenticar();
+    }
+
+    // verificando se o login e senha é igual à admin
+    @Override
+    public boolean autenticar() {
         return login.equals("admin") && senha.equals("admin");
     }
 }

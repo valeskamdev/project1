@@ -8,6 +8,7 @@ public interface PermitirAcesso {
       o usuário está autenticado ou não, parametro com login e senha
      */
     public boolean autenticar(String login, String senha);
+    public boolean autenticar();
 
 
 }

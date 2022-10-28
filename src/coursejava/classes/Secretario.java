@@ -24,9 +24,9 @@ public class Secretario extends Pessoa implements PermitirAcesso {
         this.senha = senha;
     }
 
+    // construtor para classe  "ClassesFilhas"
     public Secretario() {
     }
-
 
     // fazendo referências aos atributos
     public String getRegistro() {
@@ -69,14 +69,13 @@ public class Secretario extends Pessoa implements PermitirAcesso {
                 ", nomePai='" + nomePai + '\'' +
                 '}';
     }
-
     // salário do secretário
     @Override
     public double salario() {
         return 1800.80 * 0.9;
     }
 
-    // método que recebe dois parâmetros e retorna um valor booleano
+    // método que recebe dois parâmetros, login e senha, e retorna um booleano
     @Override
     public boolean autenticar(String login, String senha) {
         this.login = login;

@@ -1,8 +1,10 @@
 package coursejava.executavel;
 
 import coursejava.classes.Aluno;
+import coursejava.classes.Diretor;
 import coursejava.classes.Disciplina;
 import coursejava.classes.Secretario;
+import coursejava.classesauxiliares.FuncaoAutenticacao;
 import coursejava.constantes.StatusAluno;
 import coursejava.interfaces.PermitirAcesso;
 
@@ -18,11 +20,12 @@ public class PrimeiraClasseJava {
             String login = JOptionPane.showInputDialog("Informe o login");
             String senha = JOptionPane.showInputDialog("Informe a senha");
 
-            // criando objeto da classe "Secretário" e atribuindo-o à variável "permitirAcesso"
-            PermitirAcesso permitirAcesso = new Secretario(login, senha);
+            /*
+              criando uma nova instância da classe "FuncaoAutenticacao" e passando uma nova instância da classe
+              "Diretor" como parâmetro. Então está chamando o método "autenticar()" da classe "FuncaoAutenticacao"
 
-            // chamando o método "autenticar()" da interface "PermitirAcesso"
-            if (permitirAcesso.autenticar()) {
+             */
+            if (new FuncaoAutenticacao(new Diretor(login, senha)).autenticar()) {
 
                 // instânciando uma lista de objetos Aluno (colocar a classe entre os operdores de maior e menor)
                 List<Aluno> alunos = new ArrayList<Aluno>();
@@ -44,7 +47,6 @@ public class PrimeiraClasseJava {
                 String nomeEscola = JOptionPane.showInputDialog("Nome da escola?");
                 String serieMatriculado = JOptionPane.showInputDialog("Qual a série?");
                 String dataMatricula = JOptionPane.showInputDialog("Data da matricula?");
-
 
                 // criando um novo objeto da classe "Aluno" e atribuindo-o à variável "aluno1"'
                 Aluno aluno1 = new Aluno();

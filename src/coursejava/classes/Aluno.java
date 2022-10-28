@@ -7,12 +7,6 @@ import java.util.List;
 import java.util.Objects;
 
 
-/*
-    Herança (extends), cria classes que herdam atributos e métodos de outras classes
-    evitando rescrita de código chamado HERANÇA. Para representarmos esse tipo na linguagem
-    ultilizamos a palavra reservada >>extends<<
- */
-
 // SUBCLASSE (filha)
 // criando uma classe chamada "Aluno" que herda da classe "Pessoa"
 public class Aluno extends Pessoa {
@@ -144,7 +138,10 @@ public class Aluno extends Pessoa {
         return somaNotas / disciplinas.size();  // as notas sarão divididas pela quantidade de objetos dentro da lista
     }
 
-    // definindo se o aluno está aprovado, em recuperação ou reprovado
+    /*
+      retornando uma string com base na média das notas e definindo
+      se o aluno está aprovado, em recuperação ou reprovado
+    */
     public String getAlunoAprovado() {
         double media = this.getMediaNota();
         if(media >= 5) {

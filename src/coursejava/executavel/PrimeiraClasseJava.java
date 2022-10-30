@@ -6,18 +6,26 @@ import coursejava.classes.Disciplina;
 import coursejava.classes.Secretario;
 import coursejava.classesauxiliares.FuncaoAutenticacao;
 import coursejava.constantes.StatusAluno;
+import coursejava.excecao.ExcecaoProcessarNota;
 import coursejava.interfaces.PermitirAcesso;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class PrimeiraClasseJava {
         public static void main(String[] args) {  // método auto executávavel
 
-            try {  // bloco try catch, é usado para capturar exceções.
+
+
+            try {  // bloco try catch, é usado para capturar exceções
+
+                lerArquivo();
 
                 // simples validação de permissão de acesso
                 String login = JOptionPane.showInputDialog("Informe o login");
@@ -152,7 +160,6 @@ public class PrimeiraClasseJava {
                 System.out.println("Mensagem: " + e.getMessage());  // imprimindo a mensagem de erro/causa no console
 
                 // um loop for que itera sobre o rastreamento de pilha
-                // e.getStackTrace() é uma array
                 // e.getStackTrace().length = obtendo o comprimento do rastreamento de pilha
                 for (int pos = 0; pos < e.getStackTrace().length; pos++) {
                     // [pos] = na posicao do array, assim, retornando os métodos get sobre
@@ -162,13 +169,26 @@ public class PrimeiraClasseJava {
                     saida.append("\n Classe de erro: ").append(e.getClass().getName()); // obtendo o nome da classe que está lançando o erro
                 }
                 JOptionPane.showMessageDialog(null, "Erro de conversão de número " + saida.toString());  // caixa de mensagem para o usuário
-            }catch(NullPointerException e){  // exceção expecifica
-                JOptionPane.showMessageDialog(null, "NullPointerException: " +e.getClass());
+            }catch(ExcecaoProcessarNota e){  // exceção expecifica
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro da exceção customizada: " +e.getClass().getName());
             }catch(Exception e){ //todas exceções que não prevemos
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Erro inesperado: " + e.getClass().getName());
             }finally {  //  permite que você execute código, depois try e catch, independentemente do resultado
                 JOptionPane.showMessageDialog(null, "Duvidas? Envie um email para testeste@gmail.com ");
+            }
+        }
+
+        // ele lê um arquivo chamado notas.txt e lança uma exceção se o arquivo não for encontrado
+        // declarando um método que lança uma exceção
+        public static void lerArquivo() throws ExcecaoProcessarNota {
+            try {
+                File fileNotas = new File("notas.txt");
+                Scanner scanner = new Scanner(fileNotas);  // lendo o arquivo
+            }catch(FileNotFoundException e) {
+                // lançando uma nova exceção do tipo "ExcecaoProcessarNota" e passando a mensagem da exceção como um parâmetro
+                throw new ExcecaoProcessarNota(e.getMessage());
             }
         }
 }

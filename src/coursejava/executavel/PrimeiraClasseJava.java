@@ -21,8 +21,6 @@ import java.util.Scanner;
 public class PrimeiraClasseJava {
         public static void main(String[] args) {  // método auto executávavel
 
-
-
             try {  // bloco try catch, é usado para capturar exceções
 
                 lerArquivo();
@@ -150,7 +148,8 @@ public class PrimeiraClasseJava {
                 } else {
                     JOptionPane.showMessageDialog(null, "Acesso não permitido!");
                 }
-            }catch (NumberFormatException e) { // exceção expecifica
+            // capturando qualquer exceção que possa ser lançada
+            }catch (Exception e) {
 
                 /* StringBuilder = permite criar e manipular dados de Strings dinamicamente,
                  quando concatena strings com StringBuilder é invocado o método append */
@@ -168,27 +167,17 @@ public class PrimeiraClasseJava {
                     saida.append("\n Linha de erro: ").append(e.getStackTrace()[pos].getLineNumber()); // recebendo o número da linha do erro
                     saida.append("\n Classe de erro: ").append(e.getClass().getName()); // obtendo o nome da classe que está lançando o erro
                 }
+
                 JOptionPane.showMessageDialog(null, "Erro de conversão de número " + saida.toString());  // caixa de mensagem para o usuário
-            }catch(ExcecaoProcessarNota e){  // exceção expecifica
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Erro da exceção customizada: " +e.getClass().getName());
-            }catch(Exception e){ //todas exceções que não prevemos
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Erro inesperado: " + e.getClass().getName());
+
             }finally {  //  permite que você execute código, depois try e catch, independentemente do resultado
                 JOptionPane.showMessageDialog(null, "Duvidas? Envie um email para testeste@gmail.com ");
             }
         }
 
-        // ele lê um arquivo chamado notas.txt e lança uma exceção se o arquivo não for encontrado
-        // declarando um método que lança uma exceção
-        public static void lerArquivo() throws ExcecaoProcessarNota {
-            try {
+        // a função "lerArquivo()",  lê o arquivo "notas.txt" e armazena o conteúdo na variável "scanner"
+        public static void lerArquivo() throws FileNotFoundException {
                 File fileNotas = new File("notas.txt");
                 Scanner scanner = new Scanner(fileNotas);  // lendo o arquivo
-            }catch(FileNotFoundException e) {
-                // lançando uma nova exceção do tipo "ExcecaoProcessarNota" e passando a mensagem da exceção como um parâmetro
-                throw new ExcecaoProcessarNota(e.getMessage());
-            }
         }
 }

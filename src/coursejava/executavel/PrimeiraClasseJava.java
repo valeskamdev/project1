@@ -9,11 +9,9 @@ import coursejava.constantes.StatusAluno;
 import coursejava.interfaces.PermitirAcesso;
 
 import javax.swing.*;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 
 public class PrimeiraClasseJava {
@@ -169,6 +167,8 @@ public class PrimeiraClasseJava {
             }catch(Exception e){ //todas exceções que não prevemos
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Erro inesperado: " + e.getClass().getName());
+            }finally {  //  permite que você execute código, depois try e catch, independentemente do resultado
+                JOptionPane.showMessageDialog(null, "Duvidas? Envie um email para testeste@gmail.com ");
             }
         }
 }

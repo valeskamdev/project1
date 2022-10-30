@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 public class PrimeiraClasseJava {
         public static void main(String[] args) {  // método auto executávavel
 
@@ -36,7 +37,7 @@ public class PrimeiraClasseJava {
                     HashMap<String, List<Aluno>> map = new HashMap<String, List<Aluno>>();
 
                     // loop que será executado 5 vezes, representando quantidade de alunos
-                    for (int quantidade = 1; quantidade <= 1; quantidade++) {
+                    for (int quantidade = 1; quantidade <= 5; quantidade++) {
 
                         // solicitando ao usuário para que insira as informações
                         String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + quantidade + " ?");
@@ -147,8 +148,27 @@ public class PrimeiraClasseJava {
                     JOptionPane.showMessageDialog(null, "Acesso não permitido!");
                 }
             }catch (Exception e) {
+
+                /*
+                 StringBuilder = permite criar e manipular dados de Strings dinamicamente,
+                 quando concatena strings com StringBuilder é invocado o método append
+                 */
+                StringBuilder saida = new StringBuilder();
+
                 e.printStackTrace(); // imprime erro no console (IMPORTANT!)
-                JOptionPane.showMessageDialog(null, "Erro ao processar notas");  // caixa de mensagem para o usuário
+                System.out.println("Mensagem: " + e.getMessage());  // imprimindo a mensagem de erro/causa no console
+
+                // um loop for que itera sobre o rastreamento de pilha
+                // e.getStackTrace() é uma array
+                // e.getStackTrace().length = obtendo o comprimento do rastreamento de pilha
+                for (int pos = 0; pos < e.getStackTrace().length; pos++) {
+                    // [pos] = na posicao do array, assim, retornando os métodos get sobre
+                    saida.append("\n Classe de erro: ").append(e.getStackTrace()[pos].getClassName()); // obtendo o nome da classe do erro
+                    saida.append("\n Método de erro: ").append(e.getStackTrace()[pos].getMethodName()); // recebendo o nome do método do erro
+                    saida.append("\n Linha de erro: ").append(e.getStackTrace()[pos].getLineNumber()); // recebendo o número da linha do erro
+                    saida.append("\n Classe de erro: ").append(e.getClass().getName()); // obtendo o nome da classe que está lançando o erro
+                }
+                JOptionPane.showMessageDialog(null, "Erro ao processar notas " + saida.toString());  // caixa de mensagem para o usuário
             }
         }
 }

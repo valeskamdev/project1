@@ -8,7 +8,7 @@ public class FuncaoAutenticacao {
     // objeto que implementa a interface PermitirAcesso"
     private PermitirAcesso permitirAcesso;
 
-    // retorna a função autenticar() do objeto permitirAcesso
+    // método que retorna a função autenticar() do objeto permitirAcesso
     public boolean autenticar() {
         return permitirAcesso.autenticar();
     }

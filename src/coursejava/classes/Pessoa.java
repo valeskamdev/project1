@@ -8,24 +8,6 @@ package coursejava.classes;
  */
 public abstract class Pessoa {
 
-     /*
-        MODIFICADORES:
-
-        PUBLIC = podendo ser acessado em qualquer classe
-        PRIVATE = podendo ser acessado na própria classe
-        PROTECTED = acessível a própria classe (mãe) e classes filhas
-     */
-
-    /*
-        THIS e SUPER
-
-        THIS = faz referência à própria classe
-        SUPER = faz referência à classe mãe
-        SUPER() = chama o construtor da classe mãe
-
-     */
-
-
     protected String nome;
     protected int idade;
     protected String dataNasciemnto;

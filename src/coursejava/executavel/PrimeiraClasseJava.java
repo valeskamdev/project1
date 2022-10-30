@@ -9,9 +9,11 @@ import coursejava.constantes.StatusAluno;
 import coursejava.interfaces.PermitirAcesso;
 
 import javax.swing.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class PrimeiraClasseJava {
@@ -19,15 +21,12 @@ public class PrimeiraClasseJava {
 
             try {  // bloco try catch, é usado para capturar exceções.
 
-
                 // simples validação de permissão de acesso
                 String login = JOptionPane.showInputDialog("Informe o login");
                 String senha = JOptionPane.showInputDialog("Informe a senha");
 
-            /*
-              criando uma nova instância da classe "FuncaoAutenticacao" e passando uma nova instância da classe
-              "Diretor" como parâmetro. Então está chamando o método "autenticar()" da classe "FuncaoAutenticacao"
-             */
+            /* criando uma nova instância da classe "FuncaoAutenticacao" e passando uma nova instância da classe
+              "Diretor" como parâmetro. Então está chamando o método "autenticar()" da classe "FuncaoAutenticacao" */
                 if (new FuncaoAutenticacao(new Diretor(login, senha)).autenticar()) {
 
                     // instânciando uma lista de objetos Aluno (colocar a classe entre os operdores de maior e menor)
@@ -37,7 +36,7 @@ public class PrimeiraClasseJava {
                     HashMap<String, List<Aluno>> map = new HashMap<String, List<Aluno>>();
 
                     // loop que será executado 5 vezes, representando quantidade de alunos
-                    for (int quantidade = 1; quantidade <= 5; quantidade++) {
+                    for (int quantidade = 1; quantidade <= 1; quantidade++) {
 
                         // solicitando ao usuário para que insira as informações
                         String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + quantidade + " ?");
@@ -78,10 +77,8 @@ public class PrimeiraClasseJava {
                             aluno1.getDisciplinas().add(disciplina);   //  adicionando a "disciplina" à lista de "disciplinas" do "aluno1"
                         }
 
-                         /*
-                           perguntando ao usuário se ele quer remover alguma disciplina
-                           se ele quiser, ele vai perguntar qual e depois removê-lo
-                        */
+                         /* perguntando ao usuário se ele quer remover alguma disciplina
+                           se ele quiser, ele vai perguntar qual e depois removê-lo */
 
                         int escolha = JOptionPane.showConfirmDialog(null, "Deseja remover alguma disciplina?");
                         if (escolha == 0) {  //opção SIM é zero, se o usuário clicar em sim, entra nessa condição
@@ -92,8 +89,8 @@ public class PrimeiraClasseJava {
                             while (continuarRemover == 0) {   // enquanto o usuário quiser remover, o loop continuará
                                 String disciplinaRemover = JOptionPane.showInputDialog("Qual a disciplina 1, 2, 3 ou 4?");  // pergunatndo ao usuário qual disciplina ele quer remover
 
-                    /* removendo a disciplina da lista,  "Integer.valueOf" está convertendo a variável para "Integer"
-                     e então "intValue()" está convertendo o "Integer" para um "int", para usar o ".remove(int)" */
+                                 /* removendo a disciplina da lista,  "Integer.valueOf" está convertendo a variável para "Integer"
+                                  e então "intValue()" está convertendo o "Integer" para um "int", para usar o ".remove(int)" */
                                 aluno1.getDisciplinas().remove(Integer.valueOf(disciplinaRemover).intValue() - posicao);
                                 posicao++;
                                 continuarRemover = JOptionPane.showConfirmDialog(null, "Continuar a remover?");  // pergunta ao usuário se ele quer continuar removendo, se sim, a repetição while continuará
@@ -147,14 +144,12 @@ public class PrimeiraClasseJava {
                 } else {
                     JOptionPane.showMessageDialog(null, "Acesso não permitido!");
                 }
-            }catch (Exception e) {
+            }catch (NumberFormatException e) { // exceção expecifica
 
-                /*
-                 StringBuilder = permite criar e manipular dados de Strings dinamicamente,
-                 quando concatena strings com StringBuilder é invocado o método append
-                 */
+                /* StringBuilder = permite criar e manipular dados de Strings dinamicamente,
+                 quando concatena strings com StringBuilder é invocado o método append */
+
                 StringBuilder saida = new StringBuilder();
-
                 e.printStackTrace(); // imprime erro no console (IMPORTANT!)
                 System.out.println("Mensagem: " + e.getMessage());  // imprimindo a mensagem de erro/causa no console
 
@@ -168,7 +163,12 @@ public class PrimeiraClasseJava {
                     saida.append("\n Linha de erro: ").append(e.getStackTrace()[pos].getLineNumber()); // recebendo o número da linha do erro
                     saida.append("\n Classe de erro: ").append(e.getClass().getName()); // obtendo o nome da classe que está lançando o erro
                 }
-                JOptionPane.showMessageDialog(null, "Erro ao processar notas " + saida.toString());  // caixa de mensagem para o usuário
+                JOptionPane.showMessageDialog(null, "Erro de conversão de número " + saida.toString());  // caixa de mensagem para o usuário
+            }catch(NullPointerException e){  // exceção expecifica
+                JOptionPane.showMessageDialog(null, "NullPointerException: " +e.getClass());
+            }catch(Exception e){ //todas exceções que não prevemos
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro inesperado: " + e.getClass().getName());
             }
         }
 }

@@ -1,24 +1,36 @@
 package coursejava.executavel;
 
+import coursejava.classes.Aluno;
+import coursejava.classes.Disciplina;
+
 import javax.swing.*;
 
 public class ArrayVetor {
 
     public static void main(String[] args) {
 
-        // perguntando ao usuário quantas posições o array deve ter
-        String posicoes = JOptionPane.showInputDialog("Quantas posicoes o Array deve ter?");
+        // criando dois arrays(double) que vao ser as notas das diciplians
+        // Creating two arrays of double that will be the grades of the disciplines.
+        double[] notasJava = {8.8, 5.5, 4.6, 5.1};
+        double[] notasLogica = {5.5, 2.4, 4.2, 3.1};
 
-        // criando um array de doubles com o tamanho do valor da variável "posicoes", convertendo a variavel "posicoes"(String) para "int"
-        double[] notas = new double[Integer.parseInt(posicoes)];
+        // criando uma nova instância da classe Aluno e definindo o nome e o nome da escola
+        Aluno aluno = new Aluno();
+        aluno.setNome("Allan");
+        aluno.setNomeEscola("Jdev");
 
-        for (int pos = 0; pos < notas.length; pos++) {
-            String valor = JOptionPane.showInputDialog("Qual o valor da posicao " + (pos + 1) + " ?"); // pedindo ao usuário que insira um valor para o array
-            notas[pos] = Double.valueOf(valor); // convertendo o valor da variável "valor" para um double e atribuindo-o ao array
-        }
+        /* criando duas instâncias da classe Disciplina, definindo o nome da disciplina
+          e as notas, e então adicionando-o à lista de disciplinas do aluno  */
 
-        for (int pos = 0; pos < notas.length; pos++) {  // loop que itera pelo array, iniciando em 0 por conta da primeira posisicao do array
-            System.out.println("Nota " + (pos + 1) + ": " + notas[pos]);  // imprimindo os valores do array
-        }
+        Disciplina disciplina = new Disciplina();
+        disciplina.setDisciplina("Curso de Java");
+        disciplina.setNota(notasJava);
+        aluno.getDisciplinas().add(disciplina);
+
+        Disciplina disciplina2 = new Disciplina();
+        disciplina2.setDisciplina("Logica de programacao");
+        aluno.getDisciplinas().add(disciplina2);
+
+
     }
 }

@@ -127,13 +127,14 @@ public class Aluno extends Pessoa {
         return 1500.90;
     }
 
-    // método que retorna a média das quatro notas do aluno que está na lista de objetos Disciplinas
+    // a função getMediaNota() retorna a média das notas de todas as disciplinas da lista de disciplinas
+    // retorna a média das notas das disciplinas
     public double getMediaNota() {
 
         double somaNotas = 0.0;
 
         for (Disciplina disciplina : disciplinas) {
-            somaNotas +=  disciplina.getNota();  // adicionando o valor das notas que se encontra no objeto Disciplina para "somaNotas"
+            somaNotas +=  disciplina.getMediaNotas();  //  adicionando o valor de "disciplina.getMediaNotas()" a "somaNotas"
         }
         return somaNotas / disciplinas.size();  // as notas sarão divididas pela quantidade de objetos dentro da lista
     }

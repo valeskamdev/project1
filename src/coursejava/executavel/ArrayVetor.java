@@ -13,6 +13,8 @@ public class ArrayVetor {
         notas[2] = 9.7;
         notas[3] = 9.9;
 
-        System.out.println("notas");
+        for (int pos = 0; pos < notas.length; pos++) {  // loop que itera pelo array, iniciando em 0 por conta da primeira posisicao do array
+            System.out.println("Nota " + (pos + 1) + ": " + notas[pos]);  // imprimindo os valores do array
+        }
     }
 }

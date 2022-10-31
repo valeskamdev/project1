@@ -23,8 +23,6 @@ public class PrimeiraClasseJava {
 
             try {  // bloco try catch, é usado para capturar exceções
 
-                lerArquivo();
-
                 // simples validação de permissão de acesso
                 String login = JOptionPane.showInputDialog("Informe o login");
                 String senha = JOptionPane.showInputDialog("Informe a senha");
@@ -173,11 +171,5 @@ public class PrimeiraClasseJava {
             }finally {  //  permite que você execute código, depois try e catch, independentemente do resultado
                 JOptionPane.showMessageDialog(null, "Duvidas? Envie um email para testeste@gmail.com ");
             }
-        }
-
-        // a função "lerArquivo()",  lê o arquivo "notas.txt" e armazena o conteúdo na variável "scanner"
-        public static void lerArquivo() throws FileNotFoundException {
-                File fileNotas = new File("notas.txt");
-                Scanner scanner = new Scanner(fileNotas);  // lendo o arquivo
         }
 }

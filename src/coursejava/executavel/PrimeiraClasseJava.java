@@ -3,20 +3,13 @@ package coursejava.executavel;
 import coursejava.classes.Aluno;
 import coursejava.classes.Diretor;
 import coursejava.classes.Disciplina;
-import coursejava.classes.Secretario;
 import coursejava.classesauxiliares.FuncaoAutenticacao;
 import coursejava.constantes.StatusAluno;
-import coursejava.excecao.ExcecaoProcessarNota;
-import coursejava.interfaces.PermitirAcesso;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
-
 
 public class PrimeiraClasseJava {
         public static void main(String[] args) {  // método auto executávavel
@@ -75,7 +68,7 @@ public class PrimeiraClasseJava {
                             String notaDisciplina = JOptionPane.showInputDialog("Nota da disciplina " + pos + " ?");
                             Disciplina disciplina = new Disciplina();    // novo objeto da classe "Disciplina"
                             disciplina.setDisciplina(nomeDisciplina);    // definindo o nome da disciplina
-                            disciplina.setNota(Double.parseDouble(notaDisciplina));    // convertendo "String" para um "Double"
+                        //    disciplina.setNota(Double.parseDouble(notaDisciplina));    // convertendo "String" para um "Double"
                             aluno1.getDisciplinas().add(disciplina);   //  adicionando a "disciplina" à lista de "disciplinas" do "aluno1"
                         }
 

@@ -9,8 +9,8 @@ public class ArrayVetor {
     public static void main(String[] args) {
 
         // criando dois arrays(double) que vao ser as notas das diciplians
-        double[] notasJava = {8.8, 5.5, 4.6, 5.1};
-        double[] notasLogica = {5.5, 2.4, 4.2, 3.1};
+        double[] notasJava = {5.5, 4.6, 5.8, 8.8};
+        double[] notasLogica = {2.4, 4.2, 7.1, 3.1};
 
         // criando uma nova instância da classe Aluno e definindo o nome e o nome da escola
         Aluno aluno = new Aluno();
@@ -38,9 +38,20 @@ public class ArrayVetor {
             System.out.println(disci.getDisciplina());
             System.out.println("As notas das diciplinas sao: ");
 
+            double notaMax = 0.0;
+            // obtendo as notas de cada disciplina
             for (int pos = 0; pos < disci.getNota().length; pos++) {
                 System.out.println("Nota " + (pos + 1) + ": " + disci.getNota()[pos]);
+
+                // obtendo a nota mais alta da matriz
+                if (pos == 0) {
+                    notaMax = disci.getNota()[pos];
+                }else if (disci.getNota()[pos] > notaMax) {
+                    notaMax = disci.getNota()[pos];
+                }
+
             }
+            System.out.println("A maior nota da disciplina " + disci.getDisciplina() + ": " + notaMax);
         }
     }
 }

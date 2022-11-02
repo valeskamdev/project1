@@ -39,6 +39,7 @@ public class ArrayVetor {
             System.out.println("As notas das diciplinas sao: ");
 
             double notaMax = 0.0;
+            double notaMin = 0.0;
             // obtendo as notas de cada disciplina
             for (int pos = 0; pos < disci.getNota().length; pos++) {
                 System.out.println("Nota " + (pos + 1) + ": " + disci.getNota()[pos]);
@@ -50,8 +51,15 @@ public class ArrayVetor {
                     notaMax = disci.getNota()[pos];
                 }
 
+                // obtendo a nota mais baixa da matriz
+                if(pos == 0) {
+                    notaMin = disci.getNota()[pos];
+                }else if (disci.getNota()[pos] < notaMin) {
+                    notaMin = disci.getNota()[pos];
+                }
             }
             System.out.println("A maior nota da disciplina " + disci.getDisciplina() + ": " + notaMax);
+            System.out.println("A menor nota da disciplina " + disci.getDisciplina() + ": " + notaMin);
         }
     }
 }

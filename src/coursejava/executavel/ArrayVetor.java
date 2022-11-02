@@ -30,36 +30,40 @@ public class ArrayVetor {
         disciplina2.setNota(notasLogica);
         aluno.getDisciplinas().add(disciplina2);
 
-        System.out.println("O aluno " + aluno.getNome() + " está inscrito na escola " + aluno.getNomeEscola());
-        System.out.println("Disciplinas do " + aluno.getNome() + ":");
+        // criando um array de Aluno, e então está adicionando o aluno no array
+        Aluno[] arrayAlunos = new Aluno[1];
+        arrayAlunos[0] = aluno;
+        for (int pos = 0; pos < arrayAlunos.length; pos++) {
+            System.out.println("Nome do aluno: " + arrayAlunos[pos].getNome());
 
-        // iterando sobre a lista de disciplinas do aluno e imprimindo o nome da disciplina e as notas
-        for (Disciplina disci : aluno.getDisciplinas()) {
-            System.out.println(disci.getDisciplina());
-            System.out.println("As notas das diciplinas sao: ");
+            // loop for que itera sobre o array de objetos Disciplina
+            for (Disciplina disci : arrayAlunos[pos].getDisciplinas()) {
+                System.out.println("Nome da disciplina: " + disci.getDisciplina());
 
-            double notaMax = 0.0;
-            double notaMin = 0.0;
-            // obtendo as notas de cada disciplina
-            for (int pos = 0; pos < disci.getNota().length; pos++) {
-                System.out.println("Nota " + (pos + 1) + ": " + disci.getNota()[pos]);
+                double notaMax = 0.0;
+                double notaMin = 0.0;
 
-                // obtendo a nota mais alta da matriz
-                if (pos == 0) {
-                    notaMax = disci.getNota()[pos];
-                }else if (disci.getNota()[pos] > notaMax) {
-                    notaMax = disci.getNota()[pos];
+                // iterando sobre o array de notas
+                for(int i = 0; i < disci.getNota().length; i++) {
+                    System.out.println("Suas notas são: " + disci.getNota()[i]);
+
+                    // obtendo o maior valor do array
+                    if (i == 0) {
+                        notaMax = disci.getNota()[i];
+                    }else if (disci.getNota()[i] > notaMax) {
+                        notaMax = disci.getNota()[i];
+                    }
+
+                    // obtendo o menor valor do array
+                    if (i == 0) {
+                        notaMin = disci.getNota()[i];
+                    }else if (disci.getNota()[i] < notaMin) {
+                        notaMin = disci.getNota()[i];
+                    }
                 }
-
-                // obtendo a nota mais baixa da matriz
-                if(pos == 0) {
-                    notaMin = disci.getNota()[pos];
-                }else if (disci.getNota()[pos] < notaMin) {
-                    notaMin = disci.getNota()[pos];
-                }
+                System.out.println("A maior nota dessa disciplina foi: " + notaMax);
+                System.out.println("A menor nota dessa disciplina foi: " + notaMin);
             }
-            System.out.println("A maior nota da disciplina " + disci.getDisciplina() + ": " + notaMax);
-            System.out.println("A menor nota da disciplina " + disci.getDisciplina() + ": " + notaMin);
         }
     }
 }

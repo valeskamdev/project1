@@ -1,15 +1,26 @@
 package coursejava.threads;
 
+import javax.swing.*;
+
 public class AulaThread {
 
     // maneira de dizer ao compilador que o método pode lançar uma exceção do tipo "InterruptedException"
     public static void main(String[] args) throws InterruptedException {
 
-        for(int pos = 0; pos < 10; pos++) {
+        // processo paralelo
+        new Thread(() -> {  // função run() é chamada quando o thread é iniciado
 
-            // fazendo o programa esperar 1 segundo antes de executar a próxima linha
-            Thread.sleep(1000);
-            System.out.println("Executando rotinas, envio de e-mail");
-        }
+            for(int pos = 0; pos < 10; pos++) {
+
+                System.out.println("Executando rotina, envio de e-mail");
+
+                try {
+                    Thread.sleep(1000);  // fazendo o programa esperar 1 segundo antes de executar a próxima linha
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }).start();
+        JOptionPane.showMessageDialog(null, "Sistema continua executando para o usuário");
     }
 }

@@ -2,8 +2,6 @@ package coursejava.threads;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -25,29 +23,45 @@ public class TelaTimeThread extends JDialog {
         JButton botao = new JButton("Start");
         JButton botao2 = new JButton("Stop");
 
-         Runnable thread1 = new Runnable() {
-            @Override
-            public void run() {
+         Runnable thread1 = () -> {
 
-                // o comentário abaixo diz a IDE para ignorar o aviso de que o loop é infinito
-                //noinspection InfiniteLoopStatement
-                while (true) {
-                    // configurando o campo de texto para data e hora atuais
-                    tempo.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
+             // o comentário abaixo diz a IDE para ignorar o aviso de que o loop é infinito
+             //noinspection InfiniteLoopStatement
+             while (true) {
+                 // configurando o campo de texto para data e hora atuais
+                 tempo.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
 
-                    // fazendo o thread parar de executar por um intervalo de 1 segundo
+                 // fazendo o thread parar de executar por um intervalo de 1 segundo
 
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+                 try {
+                     Thread.sleep(1000);
+                 } catch (InterruptedException e) {
+                     throw new RuntimeException(e);
+                 }
+             }
+         };
+
+        Runnable thread2 = () -> {
+
+            // o comentário abaixo diz a IDE para ignorar o aviso de que o loop é infinito
+            //noinspection InfiniteLoopStatement
+            while (true) {
+                // configurando o campo de texto para data e hora atuais
+                tempo2.setText(new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(Calendar.getInstance().getTime()));
+
+                // fazendo o thread parar de executar por um intervalo de 1 segundo
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
             }
+        };
 
-            };
-
+        // criando um array de threads
         final Thread[] thread1Time = new Thread[1];
+        final Thread[] thread2Time = new Thread[1];
 
         // configuracoes iniciais
         setTitle("Tela time com thread");  // configurando o título da janela
@@ -100,20 +114,28 @@ public class TelaTimeThread extends JDialog {
 
 
         // executa clique no botao
-        botao.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                thread1Time[0] = new Thread(thread1);
-                thread1Time[0].start(); // iniciando a thread
-            }
+        botao.addActionListener(e -> {
+            thread1Time[0] = new Thread(thread1);
+            thread1Time[0].start(); // iniciando a thread
+
+            thread2Time[0] = new Thread(thread2);
+            thread2Time[0].start(); // iniciando a thread
+
+            // desabilitando o botão start e habilitando o botão stop
+            botao.setEnabled(false);
+            botao2.setEnabled(true);
         });
 
-        botao2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                thread1Time[0].stop();  // parando a thread
-            }
+        botao2.addActionListener(e -> {
+            thread1Time[0].stop();  // parando a thread
+            thread2Time[0].stop();  // parando a thread
+
+            // desabilitando o botão stop e habilitando o botão start
+            botao.setEnabled(true);
+            botao2.setEnabled(false);
         });
+
+        botao2.setEnabled(false);
 
         add(painel, BorderLayout.WEST);
 

@@ -12,48 +12,54 @@ public class ImplementacaoFilaThread extends Thread{
         pilha_filha.add(filaThread);
     }
 
+    // criando um thread que irá executar um loop que irá iterar através de um iterador sincronizado de fila
     @Override
-    // usando um iterador sincronizado para processar uma fila
     public void run() {
-        // interagir para percorrer na fila
-        Iterator<ObjetoFilaThread> intercao = pilha_filha.iterator();
 
-        // bloqueando o iterador para que apenas um thread possa acessá-lo por  (evitando que outros processos entrem e atrapalhem)
-        synchronized (intercao) {
+        System.out.println("Fila rodando");
+            // loop
+            while (true) {
 
-            while (intercao.hasNext()) {  // enquanto tiver dados em fila ira processar
-                ObjetoFilaThread processar = intercao.next();  // obtendo o próximo item na fila
+                // usando um iterador sincronizado para processar uma fila
+                Iterator<ObjetoFilaThread> intercao = pilha_filha.iterator();
 
-                /*
-                processos demorados
+                // bloqueando o iterador para que apenas um thread possa acessá-lo por  (evitando que outros processos entrem e atrapalhem)
+                synchronized (intercao) {
 
-               -processar 10mil notas fiscais
-               -gerar uma lista enorme dw PDF
-               -gerar envios em massa de emails
-                 */
+                // interagir para percorrer na fila
+                while (intercao.hasNext()) {  // enquanto tiver dados em fila ira processar
+                    ObjetoFilaThread processar = intercao.next();  // obtendo o próximo item na fila
 
-                System.out.println(processar.getEmail());
-                System.out.println(processar.getNome());
+                    /*
+                    processos demorados
 
-                //depois de processar, remove o item atual da fila
-                intercao.remove();
+                   -processar 10mil notas fiscais
+                   -gerar uma lista enorme dw PDF
+                   -gerar envios em massa de emails
+                     */
 
-                // tempo de descarga de memoria (ESSENCIAL)
+                    System.out.println("-----------------------------------------");
+                    System.out.println(processar.getNome());
+                    System.out.println(processar.getEmail());
+
+                    //depois de processar, remove o item atual da fila
+                    intercao.remove();
+
+                    // tempo de descarga de memoria (ESSENCIAL)
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                // tempo limpeza de memoria
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
         }
-
-        // tempo limpeza de memoria
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-
     }
 }

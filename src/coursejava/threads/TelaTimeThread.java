@@ -2,8 +2,6 @@ package coursejava.threads;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 /* estendendo a classe principal (JDialog) para criar uma janela de diálogo. Você pode usar essa classe
    para criar uma caixa de diálogo personalizada ou invocar os vários métodos de classe em JOptionPane */
@@ -13,55 +11,18 @@ public class TelaTimeThread extends JDialog {
 
         JPanel painel = new JPanel(new GridBagLayout());  // criando um painel de componentes
 
-        JLabel hora = new JLabel(" Time da thread 1");  // criando uma etiqueta com o texto "Time da thread 1"
+        JLabel hora = new JLabel(" Nome");  // criando uma etiqueta com o texto "Time da thread 1"
         JTextField tempo = new JTextField();  // criando um campo de texto com o nome "tempo"
 
-        JLabel hora2 = new JLabel(" Time da thread 2");
+        JLabel hora2 = new JLabel(" E-mail");
         JTextField tempo2 = new JTextField();
 
         // criando dois botões, start e stop
-        JButton botao = new JButton("Start");
+        JButton botao = new JButton("Add lista");
         JButton botao2 = new JButton("Stop");
 
-         Runnable thread1 = () -> {
-
-             // o comentário abaixo diz a IDE para ignorar o aviso de que o loop é infinito
-             //noinspection InfiniteLoopStatement
-             while (true) {
-                 // configurando o campo de texto para data e hora atuais
-                 tempo.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
-
-                 // fazendo o thread parar de executar por um intervalo de 1 segundo
-
-                 try {
-                     Thread.sleep(1000);
-                 } catch (InterruptedException e) {
-                     throw new RuntimeException(e);
-                 }
-             }
-         };
-
-        Runnable thread2 = () -> {
-
-            // o comentário abaixo diz a IDE para ignorar o aviso de que o loop é infinito
-            //noinspection InfiniteLoopStatement
-            while (true) {
-                // configurando o campo de texto para data e hora atuais
-                tempo2.setText(new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(Calendar.getInstance().getTime()));
-
-                // fazendo o thread parar de executar por um intervalo de 1 segundo
-
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        };
-
-        // criando um array de threads
-        final Thread[] thread1Time = new Thread[1];
-        final Thread[] thread2Time = new Thread[1];
+        // instanciando o objeto fila
+        ImplementacaoFilaThread fila = new ImplementacaoFilaThread();
 
         // configuracoes iniciais
         setTitle("Tela time com thread");  // configurando o título da janela
@@ -85,7 +46,6 @@ public class TelaTimeThread extends JDialog {
         // definindo o tamanho do campo, incrementando a coordenada e adicionando ao painel
         tempo.setPreferredSize(new Dimension(200, 25));  // configurando o tamanho do campo "tempo"
         gerenciadorLayout.gridy++;  // incrementando a coordenada y do gerenciador de layout
-        tempo.setEditable(false);  // tornando o campo de texto não editável
         painel.add(tempo, gerenciadorLayout);  // adicionando "tempo" e o gerenciador de layout ao painel
 
         // definindo o tamanho da etiqueta, incrementando a coordenada e adicionando ao painel
@@ -96,7 +56,6 @@ public class TelaTimeThread extends JDialog {
         // definindo o tamanho do campo, incrementando a coordenada e adicionando ao painel
         tempo2.setPreferredSize(new Dimension(200, 25));
         gerenciadorLayout.gridy++;
-        tempo2.setEditable(false);
         painel.add(tempo2, gerenciadorLayout);
 
         gerenciadorLayout.gridwidth = 1;  // definindo a largura do componente para 1
@@ -111,33 +70,22 @@ public class TelaTimeThread extends JDialog {
         gerenciadorLayout.gridx++;
         painel.add(botao2, gerenciadorLayout);
 
-
-
         // executa clique no botao
         botao.addActionListener(e -> {
-            thread1Time[0] = new Thread(thread1);
-            thread1Time[0].start(); // iniciando a thread
+            ObjetoFilaThread filaThread = new ObjetoFilaThread();
+            filaThread.setNome(tempo.getText());
+            filaThread.setEmail(tempo2.getText());
 
-            thread2Time[0] = new Thread(thread2);
-            thread2Time[0].start(); // iniciando a thread
+            fila.add(filaThread);
 
-            // desabilitando o botão start e habilitando o botão stop
-            botao.setEnabled(false);
-            botao2.setEnabled(true);
         });
 
         botao2.addActionListener(e -> {
-            thread1Time[0].stop();  // parando a thread
-            thread2Time[0].stop();  // parando a thread
 
-            // desabilitando o botão stop e habilitando o botão start
-            botao.setEnabled(true);
-            botao2.setEnabled(false);
         });
 
-        botao2.setEnabled(false);
-
-        add(painel, BorderLayout.WEST);
+        fila.start();  // iniciando o thread
+        add(painel, BorderLayout.WEST);  // adicionando o painel à janela
 
         // configuracao final
         setVisible(true);  // tornando a janela visível

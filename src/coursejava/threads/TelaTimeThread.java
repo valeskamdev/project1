@@ -2,6 +2,8 @@ package coursejava.threads;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /* estendendo a classe principal (JDialog) para criar uma janela de diálogo. Você pode usar essa classe
    para criar uma caixa de diálogo personalizada ou invocar os vários métodos de classe em JOptionPane */
@@ -22,7 +24,7 @@ public class TelaTimeThread extends JDialog {
         JButton botao2 = new JButton("Stop");
 
         // instanciando o objeto fila
-        ImplementacaoFilaThread fila = new ImplementacaoFilaThread();
+        final ImplementacaoFilaThread[] fila = {new ImplementacaoFilaThread()};
 
         // configuracoes iniciais
         setTitle("Tela time com thread");  // configurando o título da janela
@@ -72,19 +74,28 @@ public class TelaTimeThread extends JDialog {
 
         // executa clique no botao
         botao.addActionListener(e -> {
-            ObjetoFilaThread filaThread = new ObjetoFilaThread();
-            filaThread.setNome(tempo.getText());
-            filaThread.setEmail(tempo2.getText());
 
-            fila.add(filaThread);
+            if (fila[0] == null) {
+                fila[0] = new ImplementacaoFilaThread();
+                fila[0].start();
+            }
 
+            for (int qtd = 0; qtd < 100; qtd++) {  // simulando 100 envios
+
+                ObjetoFilaThread filaThread = new ObjetoFilaThread();
+                filaThread.setNome(tempo.getText() + " - " + (qtd + 1));
+                filaThread.setEmail(tempo2.getText());
+
+                ImplementacaoFilaThread.add(filaThread);
+            }
         });
 
         botao2.addActionListener(e -> {
 
+            fila[0] = null;
         });
 
-        fila.start();  // iniciando o thread
+        fila[0].start();  // iniciando o thread
         add(painel, BorderLayout.WEST);  // adicionando o painel à janela
 
         // configuracao final

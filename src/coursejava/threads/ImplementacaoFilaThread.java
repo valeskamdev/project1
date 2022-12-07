@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class ImplementacaoFilaThread extends Thread{
 
     // criando uma fila do tipo "ConcurrentLinkedQueue"
-    private static ConcurrentLinkedQueue<ObjetoFilaThread> pilha_filha = new ConcurrentLinkedQueue<ObjetoFilaThread>();
+    private static final ConcurrentLinkedQueue<ObjetoFilaThread> pilha_filha = new ConcurrentLinkedQueue<ObjetoFilaThread>();
     public static void add(ObjetoFilaThread filaThread) {
         pilha_filha.add(filaThread);
     }

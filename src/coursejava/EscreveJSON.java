@@ -1,9 +1,9 @@
 package coursejava;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import coursejava.arquivoTexto.Usuario;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,5 +39,21 @@ public class EscreveJSON {
         fileWriter.write(jsonUser);
         fileWriter.flush();
         fileWriter.close();
+
+
+        System.out.println("\n--------Lendo arquivo JSON--------\n");
+
+        FileReader fileReader = new FileReader("/Users/valeskamarques/IdeaProjects/project1/src/coursejava/arquivoTexto/filejson.json");
+        JsonArray jsonArray = (JsonArray)  JsonParser.parseReader(fileReader);
+
+        List<Usuario> liUsuarios = new ArrayList<Usuario>();
+
+        // convertendo o jsonElement em um objeto Usuario e adicionando-o à lista
+        for (JsonElement jsonElement : jsonArray) {
+
+            Usuario usuario = new Gson().fromJson(jsonElement, Usuario.class);
+            liUsuarios.add(usuario);
+        }
+        System.out.println(liUsuarios);
     }
 }

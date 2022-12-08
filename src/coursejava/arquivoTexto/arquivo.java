@@ -27,7 +27,7 @@ public class arquivo {
 
         List<Pessoa> pessoas = new ArrayList<Pessoa>();
         pessoas.add(pessoa1);
-        pessoas.add(pessoa3);
+        pessoas.add(pessoa2);
         pessoas.add(pessoa3);
 
         File arquivo = new File("/Users/valeskamarques/IdeaProjects/project1/src/coursejava/arquivoTexto/arquivo.txt");

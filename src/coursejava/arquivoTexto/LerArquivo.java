@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class LerArquivo {
     public static void main(String[] args) throws FileNotFoundException {
 
-        FileInputStream entradaArquivo = new FileInputStream(new File("/Users/valeskamarques/IdeaProjects/project1/src/coursejava/arquivoTexto/arquivo.txt"));
+        FileInputStream entradaArquivo = new FileInputStream(new File("/Users/valeskamarques/IdeaProjects/project1/src/coursejava/arquivoTexto/arquivo.csv"));
         Scanner scanner = new Scanner(entradaArquivo, StandardCharsets.UTF_8);
 
         List<Pessoa> pessoas = new ArrayList<Pessoa>();

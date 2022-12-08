@@ -30,7 +30,7 @@ public class arquivo {
         pessoas.add(pessoa2);
         pessoas.add(pessoa3);
 
-        File arquivo = new File("/Users/valeskamarques/IdeaProjects/project1/src/coursejava/arquivoTexto/arquivo.txt");
+        File arquivo = new File("/Users/valeskamarques/IdeaProjects/project1/src/coursejava/arquivoTexto/arquivo.csv");
 
         // verificando se o arquivo existe.
         if (!arquivo.exists()) {
